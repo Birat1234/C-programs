@@ -1,0 +1,189 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+void Minhepify(int a[],int n,int i)
+{
+    int smallest,left,right,temp;
+    
+    temp = a[i];
+    smallest = i;
+    left = 2*i+1;
+    right = 2*i + 2;
+    
+    if(left<n && a[left]<a[smallest])
+    {
+        smallest = left;
+    }
+    
+    if(right<n && a[right]<a[smallest])
+    {
+        smallest = right;
+    }
+    
+    if (i != smallest)
+    {
+        a[i] = a[smallest];
+        a[smallest] = temp;
+        Minhepify(a,n,smallest);
+    }
+    
+    //hepify(a,n,largest);
+    
+}
+
+void Maxhepify(int a[],int n,int i)
+{
+    int largest,left,right,temp;
+    
+    temp = a[i];
+    largest = i;
+    left = 2*i+1;
+    right = 2*i + 2;
+    
+    if(left<n && a[left]>a[largest])
+    {
+        largest = left;
+    }
+    
+    if(right<n && a[right]>a[largest])
+    {
+        largest = right;
+    }
+    
+    if (i != largest)
+    {
+        a[i] = a[largest];
+        a[largest] = temp;
+        Maxhepify(a,n,largest);
+    }
+    
+    //hepify(a,n,largest);
+    
+}
+
+void printHeap(int a[],int n)
+{
+    int i;
+    for(i=0; i<n;i++)
+    {
+        printf("%d\t",a[i]);
+    }
+}
+
+int BuildMaxHeap(int b[],int m)
+{
+    int i;
+    
+    for(i = m/2-1; i>=0; i--)
+    {
+        Maxhepify(b,m,i);
+        
+    }
+    
+    
+    
+}
+
+int BuildMinHeap(int b[],int m)
+{
+    int i;
+    
+    for(i = m/2-1; i>=0; i--)
+    {
+        Minhepify(b,m,i);
+        
+    }
+    
+    
+    
+}
+
+
+
+int main()
+{
+    int a[] = {100,50,40,80,70,90,85},n,i=1;
+    
+    
+    int left,right,largest,temp;
+    
+    n = sizeof(a)/sizeof(int);
+    
+    
+
+    //printf("%d\t",a[left]);
+    //printf("%d",a[right]);
+    
+    
+    BuildMaxHeap(a,n);
+    printHeap(a,n);
+    
+    printf("\n");
+    
+    BuildMinHeap(a,n);
+    printHeap(a,n);
+    
+    
+    //hepify(a,n);
+
+    return 0;
+}
+================
+#include <stdio.h>
+int main()
+{
+   int heap[10], array_size, i, j, c, root, temporary;
+   printf("\n Enter size of array to be sorted :");
+   scanf("%d", &array_size);
+   printf("\n Enter the elements of array : ");
+   for (i = 0; i < array_size; i++)
+      scanf("%d", &heap[i]);
+   for (i = 1; i < array_size; i++)
+   {
+       c = i;
+       do
+       {
+           root = (c - 1) / 2;            
+           if (heap[root] < heap[c])   /* to create MAX heap array */
+           {                                  // if child is greater than parent swap them
+               temporary = heap[root];      // as structure is of complete binary tree
+               heap[root] = heap[c];     // it took logn steps to reach from root to leaf
+               heap[c] = temporary;
+           }
+           c = root;
+       } while (c != 0);
+   }
+   printf("Heap array : ");
+   for (i = 0; i < array_size; i++)
+       printf("%d\t ", heap[i]);         //printing the heap array
+   for (j = array_size - 1; j >= 0; j--)
+   {
+       temporary = heap[0];
+       heap[0] = heap[j] ;   /* swap max element with rightmost leaf element */
+       heap[j] = temporary;
+       root = 0;
+       do
+       {
+           c = 2 * root + 1;    /* left node of root element */
+           if ((heap[c] < heap[c + 1]) && c < j-1)
+               c++;
+           if (heap[root]<heap[c] && c<j)    /* again rearrange to max heap array */
+           {
+               temporary = heap[root];
+               heap[root] = heap[c];
+               heap[c] = temporary;
+           }
+           root = c;
+       } while (c < j);
+   }
+   printf("\n The sorted array is : ");
+   for (i = 0; i < array_size; i++)
+      printf("\t %d", heap[i]);
+}

@@ -1,0 +1,219 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node 
+    {
+        int data;
+        struct Node* left;
+        struct Node* right;
+    };
+    
+struct Node* newnode(int n)
+{
+    struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+    
+    node-> data = n;
+    node-> left = NULL;
+    node-> right = NULL;
+    
+    
+}
+
+
+void print(struct Node* v)
+{
+    
+    while(v != NULL){
+        printf("%d",v->data);
+        printf("\n");
+        print(v->left);
+        printf("\n");
+        print(v->right);
+    }
+        
+    
+}
+
+int main()
+{
+    struct Node* root = newnode(8);
+    
+    root->left = newnode(5);
+    root->right = newnode(9);
+    
+    //printf("%d", root->data);
+    //printf("%d", root->left->data);
+    
+    print(root);
+    //getchar();
+
+    return 0;
+}
+*****************************
+
+int findMax(struct Node* root) 
+{ 
+    // Base case 
+    if (root == NULL) 
+        return INT_MIN; 
+  
+    // Return maximum of 3 values: 
+    // 1) Root's data 2) Max in Left Subtree 
+    // 3) Max in right subtree 
+    int res = root->data; 
+    int lres = findMax(root->left); 
+    int rres = findMax(root->right); 
+    if (lres > res) 
+        res = lres; 
+    if (rres > res) 
+        res = rres; 
+    return res; 
+} 
+
+
+==================
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node 
+    {
+        int data;
+        struct Node* left;
+        struct Node* right;
+    };
+    
+struct Node* newnode(int n)
+{
+    struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+    
+    node-> data = n;
+    node-> left = NULL;
+    node-> right = NULL;
+    
+    
+}
+
+
+void print(struct Node* v)
+{
+    
+    if(v == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        printf("%d\t",v->data);
+        
+        print(v->left);
+        
+        print(v->right);
+    }
+        
+    
+        
+    
+}
+
+int findMax(struct Node* root) 
+{ 
+    // Base case 
+    if (root == NULL) 
+        return 0; 
+  
+    // Return maximum of 3 values: 
+    // 1) Root's data 2) Max in Left Subtree 
+    // 3) Max in right subtree 
+    int res = root->data; 
+    int lres = findMax(root->left); 
+    int rres = findMax(root->right); 
+    if (lres > res) 
+        res = lres; 
+    if (rres > res) 
+        res = rres; 
+    return res; 
+} 
+
+int findMin(struct Node* root) 
+{ 
+    // Base case 
+    //if (root == NULL) 
+     //   return 0; 
+  
+    // Return maximum of 3 values: 
+    // 1) Root's data 2) Max in Left Subtree 
+    // 3) Max in right subtree 
+    int res = root->data; 
+    int lres = findMin(root->left); 
+    int rres = findMin(root->right); 
+    if (lres < res) 
+        res = lres; 
+    if (rres < res) 
+        res = rres; 
+    return res; 
+}
+
+
+int main()
+{
+    struct Node* root = newnode(8);
+    
+    root->left = newnode(5);
+    root->left->left = newnode(3);
+    root->left->right = newnode(6);
+    root->right = newnode(9);
+    root->right->left = newnode(7);
+    root->right->right = newnode(10);
+    
+    //printf("%d", root->data);
+    //printf("%d", root->left->data);
+    
+    print(root);
+    
+    printf("\n%d",findMax(root));
+    printf("\n%d",findMin(root));
+    //getchar();
+
+    return 0;
+}
+===========================
+
+isBST( struct Node* root)
+{
+    int res = root->data;;
+    
+    if (res == 0)
+        printf("Empty tree");
+        
+    
+    int leftmax = findMax(root->left);
+    int rightmin = findMin(root->right);
+    
+    
+    if(res > leftmax || res < rightmin)
+    {
+        printf("It is a BST");
+    } else {
+        printf("It is not a BST");
+    }
+    
+    
+}
+
+
+

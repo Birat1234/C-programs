@@ -1,0 +1,85 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+struct Node {
+    int data;
+    struct Node* nxt;
+    };
+
+
+void printlist(struct Node* n)
+{
+    while(n != NULL){
+        printf("%d =>",n->data);
+        n = n->nxt;
+    }
+    printf(" [null]\n");
+}
+
+void printmiddle(struct Node* n)
+{
+    struct Node* slow = n;
+    struct Node* fast = n;
+    
+    int i = 1 ;
+    
+    while(slow != NULL){
+        
+        slow = slow->nxt;
+        i = i+1;
+        
+    }
+    
+    
+    
+    if(i%2 == 0)
+    {
+        print
+    }
+}
+
+int main()
+{
+    
+    
+    struct Node* head = NULL;
+    struct Node* first = NULL;
+    struct Node* second = NULL;
+    struct Node* third = NULL;
+    struct Node* fourth = NULL;
+    
+    head = (struct Node*)malloc(sizeof(struct Node*));
+    first = (struct Node*)malloc(sizeof(struct Node*));
+    second = (struct Node*)malloc(sizeof(struct Node*));
+    third = (struct Node*)malloc(sizeof(struct Node*));
+    fourth = (struct Node*)malloc(sizeof(struct Node*));
+    
+    
+    head->data = 2;
+    head -> nxt = first;
+    
+    first->data = 4;
+    first->nxt = second;
+    
+    second->data = 6;
+    second->nxt = third;
+    
+    third->data = 8;
+    third->nxt = fourth;
+    
+    fourth->data = 10;
+    fourth->nxt = NULL;
+    
+    printlist(head);
+    
+    printmiddle(head);
+
+    return 0;
+}
